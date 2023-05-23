@@ -1,11 +1,11 @@
 const BLOG = {
-  title: '信鑫 Blog',
-  author: 'ycjcl868',
+  title: '心血来潮的Blog',
+  author: 'Simon',
   authorAvatar: '/avatar.jpeg',
-  email: 'chaolinjin@gmail.com',
+  email: 'simoncai2016@gmail.com',
   defaultImageHost: 'images.rustc.cloud',
   link: 'https://www.rustc.cloud',
-  description: '写写文章的地方',
+  description: '写写文字的地方',
   lang: 'zh-CN', // ['en-US', 'zh-CN', 'zh-HK', 'zh-TW', 'ja-JP', 'es-ES']
   dateFormat: 'YYYY-MM-DD',
   appearance: 'auto', // ['light', 'dark', 'auto'],
@@ -22,7 +22,7 @@ const BLOG = {
   ogImageGenerateURL: 'https://og-image-craigary.vercel.app', // The link to generate OG image, don't end with a slash
   socialLink: 'https://twitter.com/ycjcl',
   seo: {
-    keywords: ['Blog', 'Website', '信鑫', 'ycjcl868', '博客'],
+    keywords: ['Blog', 'Website', '博客'],
     googleSiteVerification: '' // Remove the value or replace it with your own google site verification code
   },
   isPreviewImageSupportEnabled: process.env.IS_PREVIEW_IMAGE,
@@ -47,8 +47,8 @@ const BLOG = {
     provider: 'cusdis', // leave it empty if you don't need any comment plugin
     gitalkConfig: {
       repo: 'blog', // The repository of store comments
-      owner: 'ycjcl868',
-      admin: ['ycjcl868'],
+      owner: 'simon',
+      admin: ['simon'],
       clientID: '26baba385d964968e855',
       clientSecret: '56f5bf32b9785258727c624d7fbd2984361315e3',
       distractionFreeMode: false,
