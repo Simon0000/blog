@@ -2,7 +2,7 @@ const BLOG = {
   title: '心血来潮的Blog',
   author: 'Simon',
   authorAvatar: '/avatar.jpeg',
-  email: 'simoncai2016@gmail.com',
+  email: '----@gmail.com',
   defaultImageHost: 'images.rustc.cloud',
   link: 'https://www.rustc.cloud',
   description: '写写文字的地方',
