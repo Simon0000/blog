@@ -2,7 +2,7 @@ const BLOG = {
   title: '心血来潮的Blog',
   author: 'Simon',
   authorAvatar: '/avatar.jpeg',
-  email: '----@gmail.com',
+  email: 'simoncai2016@icloud.com',
   defaultImageHost: 'images.rustc.cloud',
   link: 'https://www.rustc.cloud',
   description: '写写文字的地方',
@@ -20,7 +20,7 @@ const BLOG = {
   showArchive: true,
   autoCollapsedNavBar: false, // The automatically collapsed navigation bar
   ogImageGenerateURL: 'https://og-image-craigary.vercel.app', // The link to generate OG image, don't end with a slash
-  socialLink: 'https://twitter.com/ycjcl',
+  socialLink: 'https://www.samsara.work/about',
   seo: {
     keywords: ['Blog', 'Website', '博客'],
     googleSiteVerification: '' // Remove the value or replace it with your own google site verification code
