@@ -4,7 +4,7 @@ const BLOG = {
   authorAvatar: '/avatar.jpeg',
   email: 'simoncai2016@icloud.com',
   defaultImageHost: 'images.rustc.cloud',
-  link: 'https://www.rustc.cloud',
+  link: 'https://www.samsara.work',
   description: '写写文字的地方',
   lang: 'zh-CN', // ['en-US', 'zh-CN', 'zh-HK', 'zh-TW', 'ja-JP', 'es-ES']
   dateFormat: 'YYYY-MM-DD',
