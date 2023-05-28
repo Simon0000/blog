@@ -2,7 +2,7 @@ const BLOG = {
   title: '心血来潮的Blog',
   author: 'Simon',
   authorAvatar: '/avatar.jpeg',
-  email: 'simoncai2016@icloud.com',
+  email: '-',
   defaultImageHost: 'images.rustc.cloud',
   link: 'https://www.samsara.work',
   description: '写写文字的地方',
@@ -59,7 +59,7 @@ const BLOG = {
       repo: ''
     },
     cusdisConfig: {
-      appId: 'f099af17-208a-4dce-805a-1afcab66c7b1', // data-app-id
+      appId: 'cee16c1e-ecb1-4e3f-b3a0-7c7a863838f4', // data-app-id
       host: 'https://cusdis.com', // data-host, change this if you're using self-hosted version
       scriptSrc: 'https://cusdis.com/js/cusdis.umd.js', // change this if you're using self-hosted version
       autoApproval: true // auto approval comments
