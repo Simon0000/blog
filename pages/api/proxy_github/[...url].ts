@@ -1,7 +1,10 @@
-import axios from 'axios'
+import ky from 'ky'
 import type { NextApiRequest, NextApiResponse } from 'next'
-import queryString from 'query-string'
 import BLOG from '@/blog.config'
+
+export const config = {
+  runtime: 'edge'
+}
 
 export default async function handler(
   req: NextApiRequest,
@@ -11,21 +14,32 @@ export default async function handler(
   const { url: queryUrl, ...query } = req.query
 
   const path = Array.isArray(queryUrl) ? queryUrl.join('/') : ''
-  const url = `https://api.github.com/${path}?${queryString.stringify(query)}`
+  const params = new URLSearchParams(query as Record<string, string>).toString()
+  const url = `https://api.github.com/${path}?${params}`
 
   console.error('url', url)
 
-  const response = await axios(url, {
+  const response = await ky(url, {
     method,
     ...(method === 'POST' ? { data: JSON.stringify(body) } : {}),
     headers: headers as any,
-    auth: {
-      username: BLOG.comment.gitalkConfig.clientID,
-      password: BLOG.comment.gitalkConfig.clientSecret
+    credentials: 'include',
+    hooks: {
+      beforeRequest: [
+        (request) => {
+          request.headers.set(
+            'Authorization',
+            `Basic ${btoa(
+              `${BLOG.comment.gitalkConfig.clientID}:${BLOG.comment.gitalkConfig.clientSecret}`
+            )}`
+          )
+        }
+      ]
     }
   })
 
   const status = response.status
+  const data = response.json()
 
-  res.status(status).json(response.data)
+  res.status(status).json(data)
 }

@@ -3,23 +3,33 @@ import BlogPost from '@/components/BlogPost'
 import Pagination from '@/components/Pagination'
 import { getAllPostsList } from '@/lib/notion'
 import BLOG from '@/blog.config'
+import { PageConfig } from 'next'
 
-export async function getStaticProps() {
+export const config: PageConfig = {
+  runtime: 'experimental-edge'
+}
+
+export async function getServerSideProps({ res }) {
   const posts = await getAllPostsList({ includePages: false })
   const postsToShow = posts.slice(0, BLOG.postsPerPage)
   const totalPosts = posts.length
   const showNext = totalPosts > BLOG.postsPerPage
+
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=59'
+  )
+
   return {
     props: {
       page: 1, // current page is 1
       postsToShow,
       showNext
-    },
-    revalidate: 10
+    }
   }
 }
 
-const blog = ({ postsToShow, page, showNext }) => {
+const Blog = ({ postsToShow, page, showNext }) => {
   return (
     <Container title={BLOG.title} description={BLOG.description}>
       {postsToShow.map((post) => (
@@ -30,4 +40,4 @@ const blog = ({ postsToShow, page, showNext }) => {
   )
 }
 
-export default blog
+export default Blog

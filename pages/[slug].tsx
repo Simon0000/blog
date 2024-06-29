@@ -1,6 +1,6 @@
-import { GetStaticProps, GetStaticPaths } from 'next'
+import { GetServerSideProps, PageConfig } from 'next'
 import Layout from '@/layouts/layout'
-import { getPostBlocks, getAllPostsList, getPost } from '@/lib/notion'
+import { getPostBlocks, getPost } from '@/lib/notion'
 import {
   getPageTableOfContents,
   uuidToId,
@@ -8,7 +8,6 @@ import {
 } from 'notion-utils'
 import { PageBlock, Block } from 'notion-types'
 import { mapImageUrl } from '@/lib/utils'
-import BLOG from '@/blog.config'
 
 const BlogPost = ({ post, coverImage, blockMap, tableOfContent }) => {
   if (!post) return null
@@ -23,15 +22,14 @@ const BlogPost = ({ post, coverImage, blockMap, tableOfContent }) => {
   )
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await getAllPostsList({ includePages: true })
-  return {
-    paths: posts.map((row) => `${BLOG.path}/${row.slug}`),
-    fallback: true
-  }
+export const config: PageConfig = {
+  runtime: 'experimental-edge'
 }
 
-export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
+export const getServerSideProps: GetServerSideProps = async ({
+  params: { slug },
+  res
+}) => {
   const [post] = await getPost({ slug })
 
   if (!post) {
@@ -63,8 +61,12 @@ export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
       })
     ) || []
 
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=59'
+  )
+
   return {
-    revalidate: 1,
     props: { post, blockMap, coverImage, tableOfContent }
   }
 }

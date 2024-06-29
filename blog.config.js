@@ -25,7 +25,7 @@ const BLOG = {
     keywords: ['Blog', 'Website', '博客'],
     googleSiteVerification: '' // Remove the value or replace it with your own google site verification code
   },
-  isPreviewImageSupportEnabled: process.env.IS_PREVIEW_IMAGE,
+  isPreviewImageSupportEnabled: false,
   notionPageId: process.env.NOTION_PAGE_ID, // DO NOT CHANGE THIS！！！
   notionAccessToken: process.env.NOTION_ACCESS_TOKEN, // Useful if you prefer not to make your database public
   analytics: {

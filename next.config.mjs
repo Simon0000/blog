@@ -1,4 +1,4 @@
-const { withAxiom } = require('next-axiom')
+import { withAxiom } from 'next-axiom'
 /**
  * @type {import('next').NextConfig}
  */
@@ -9,12 +9,23 @@ const nextConfig = {
   experimental: {
     optimizeCss: true
   },
+  async redirects() {
+    return [
+      // Basic redirect
+      {
+        source: '/feed',
+        destination: '/atom.xml',
+        permanent: true
+      }
+    ]
+  },
   images: {
     minimumCacheTTL: 60,
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**'
+        hostname: 'imagedelivery.net',
+        port: ''
       }
     ],
     formats: ['image/avif', 'image/webp'],
@@ -51,4 +62,4 @@ const nextConfig = {
   }
 }
 
-module.exports = withAxiom(nextConfig)
+export default withAxiom(nextConfig)
